@@ -1,0 +1,40 @@
+form {
+    margin: 30px 0;
+    display: flex;
+    gap: 30px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid rgb(73, 73, 73);
+}
+
+h3 {
+    margin: 30px 0 10px;
+}
+
+.baixo {
+    color: #ffbf00;
+}
+
+.normal {
+    color: green;
+}
+
+.alto {
+    color: #ffbf00;
+}
+
+.obesidade1 {
+    color: #ff4500;
+}
+
+.obesidade2 {
+    color: #ff0101;
+}
+
+.obesidade3 {
+    color: #ae0900;
+}
+
