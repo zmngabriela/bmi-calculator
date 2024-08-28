@@ -2,57 +2,57 @@ import { useEffect, useState } from "react"
 import styles from './Form.module.css'
 
 const Form = () => {
-    const [altura, setAltura] = useState(0);
-    const [peso, setPeso] = useState(0);
-    const [imc, setImc] = useState(0);
-    const [calculando, setCalculando] = useState(false);
-    const [Classificacao, setClassificacao] = useState('');
-    const [escala, setEscala] = useState('');
+    const [height, setHeight] = useState(0);
+    const [weight, setWeight] = useState(0);
+    const [bmi, setBmi] = useState(0);
+    const [calculating, setCalculating] = useState(false);
+    const [classification, setClassification] = useState('');
+    const [scale, setScale] = useState('');
 
     useEffect(() => {
-        if (altura > 0 && peso > 0) {
-            const calculo = peso / (altura * altura);
-            setImc(calculo);
+        if (height > 0 && weight > 0) {
+            const calc = weight / (height * height);
+            setBmi(calc);
 
-            if (calculo < 18.5) {
-                setClassificacao('Voce está abaixo do peso normal.');
-                setEscala(styles.baixo);
-            } if (calculo >= 18.5 && calculo <= 24.9) {
-                setClassificacao('Voce está dentro do peso normal.');
-                setEscala(styles.normal);
-            } if (calculo >= 25 && calculo <= 29.9) {
-                setClassificacao('Voce está em excesso de peso.');
-                setEscala(styles.alto);
-            } if (calculo >= 30 && calculo <= 34.9) {
-                setClassificacao('Voce está em obesidade classe I.');
-                setEscala(styles.obesidade1);
-            } if (calculo >= 35 && calculo <= 39.9) {
-                setClassificacao('Voce está em obesidade classe II.');
-                setEscala(styles.obesidade2);
-            } if (calculo >= 40) {
-                setClassificacao('Voce está em obesidade classe III.');
-                setEscala(styles.obesidade3);
+            if (calc < 18.5) {
+                setClassification('You are underweight.');
+                setScale(styles.low);
+            } if (calc >= 18.5 && calc <= 24.9) {
+                setClassification('You are at a normal weight.');
+                setScale(styles.normal);
+            } if (calc >= 25 && calc <= 29.9) {
+                setClassification('You are overweight.');
+                setScale(styles.high);
+            } if (calc >= 30 && calc <= 34.9) {
+                setClassification('You have obesity class I.');
+                setScale(styles.obesity1);
+            } if (calc >= 35 && calc <= 39.9) {
+                setClassification('You have obesity class II.');
+                setScale(styles.obesity2);
+            } if (calc >= 40) {
+                setClassification('You have obesity class III.');
+                setScale(styles.obesity3);
             }
-            setCalculando(true);
+            setCalculating(true);
         }
-    }, [altura, peso]);
+    }, [height, weight]);
 
     return (
         <>
             <header>
-                <h1>Calculadora IMC</h1>
+                <h1>BMI Calculator</h1>
             </header>
             <form>
-                <input onBlur={e => setAltura(parseFloat(e.target.value))} type="number" placeholder="Altura. Ex.: 1.60" />
-                <input onBlur={e => setPeso(parseFloat(e.target.value))} type="number" placeholder="Peso" />
+                <input onBlur={e => setHeight(parseFloat(e.target.value))} type="number" placeholder="Height. E.g.: 1.60" />
+                <input onBlur={e => setWeight(parseFloat(e.target.value))} type="number" placeholder="Weight" />
             </form>
-            {calculando ? (
+            {calculating ? (
                 <>
-                    <p>O seu IMC é: <b>{imc.toFixed(2)}</b></p>
-                    <h3>Classificação na tabela:</h3>
-                    <p className={escala}>{Classificacao}</p>
+                    <p>Your BMI is: <b>{bmi.toFixed(2)}</b></p>
+                    <h3>Classification in the table:</h3>
+                    <p className={scale}>{classification}</p>
                 </>
-            ) : <p>Por favor, digite a sua altura e peso para calcular o IMC.</p>}
+            ) : <p>Please, enter your height and weight to calculate the BIM.</p>}
         </>
     )
 }
